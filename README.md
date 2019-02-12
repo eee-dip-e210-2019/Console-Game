@@ -1,5 +1,5 @@
 # Bin
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bc9bb57a-1c04-41f9-a849-fefe0b429dd4/deploy-status)](https://app.netlify.com/sites/elated-shirley-5a8b41/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4d04108a-f6aa-4218-8afc-4a4855d1f6ce/deploy-status)](https://app.netlify.com/sites/amazing-engelbart-f5d0a5/deploys)
 
 Fun to use webiste for anonymous messaging.
 Backed by firebase and netlify.
