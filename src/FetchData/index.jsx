@@ -10,7 +10,7 @@ const App = () => {
 		const node = myRef.current;
 		const unsubsribe = firestore.collection('messages').onSnapshot(function(ss) {
 			setResult(ss.docs.map(doc => doc.data()));
-			node.scrollIntoView({ behavior: 'smooth' });
+			node.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		});
 		return unsubsribe;
 	}, []);
