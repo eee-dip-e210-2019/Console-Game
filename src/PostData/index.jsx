@@ -2,7 +2,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 import FireApp from '../utils/firebase';
-import { Input, Prompt, Form } from './style';
+import { Input, Prompt, Form, Name, CommandWrapper } from './style';
 
 function sendMessage(repo, name, color, message) {
 	const time = new Date().getTime();
@@ -21,6 +21,9 @@ const App = ({ name, color }) => {
 	let inputValue;
 	const firestore = FireApp.firestore;
 	const [value, setValue] = React.useState('');
+	React.useEffect(() => {
+		inputValue.scrollIntoView();
+	}, []);
 	return (
 		<Form
 			onClick={() => inputValue.focus()}
@@ -29,7 +32,6 @@ const App = ({ name, color }) => {
 				setValue('');
 				sendMessage(firestore, name, color, value)
 					.then(function() {
-						console.log('Document successfully written!');
 						ReactGA.event({
 							category: 'Message',
 							action: 'Post a message'
@@ -43,13 +45,19 @@ const App = ({ name, color }) => {
 					});
 			}}
 		>
-			<Prompt>{`~/trashbin/${name} $`}</Prompt>
-			<Input
-				value={value}
-				autoFocus
-				onChange={e => setValue(e.target.value)}
-				ref={input => (inputValue = input)}
-			/>
+			<Prompt>
+				~/trashbin/<Name color={color}>{name}</Name>&nbsp;
+			</Prompt>
+			<CommandWrapper>
+				<Prompt>{` $ `}</Prompt>
+				<Input
+					spellcheck={false}
+					value={value}
+					autoFocus
+					onChange={e => setValue(e.target.value)}
+					ref={input => (inputValue = input)}
+				/>
+			</CommandWrapper>
 		</Form>
 	);
 };

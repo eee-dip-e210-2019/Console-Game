@@ -5,24 +5,28 @@ import { Wrapper, Message } from './style';
 const App = () => {
 	const firestore = FireApp.firestore;
 	const [result, setResult] = React.useState([]);
-
+	const myRef = React.createRef();
 	React.useEffect(() => {
+		const node = myRef.current;
+		console.log(node);
 		const unsubsribe = firestore.collection('messages').onSnapshot(function(ss) {
 			setResult(ss.docs.map(doc => doc.data()));
+			node.scrollIntoView({ behavior: 'smooth' });
 		});
 		return unsubsribe;
 	}, []);
 
 	return (
-		result &&
-		result.map((item, i) => (
-			<Wrapper key={item.time}>
-				<Message color={item.color}>
-					<span>{`${item.name}: `}</span>
-					{`${item.message}`}
-				</Message>
-			</Wrapper>
-		))
+		<Wrapper>
+			{result &&
+				result.map((item, i) => (
+					<Message key={item.time} color={item.color}>
+						<span>{`${item.name}: `}</span>
+						{`${item.message}`}
+					</Message>
+				))}
+			<span ref={myRef} />
+		</Wrapper>
 	);
 };
 export default App;
