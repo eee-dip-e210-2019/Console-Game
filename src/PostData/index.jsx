@@ -1,6 +1,7 @@
 import React from 'react';
-import FireApp from '../utils/firebase';
+import ReactGA from 'react-ga';
 
+import FireApp from '../utils/firebase';
 import { Input, Prompt, Form } from './style';
 
 function sendMessage(repo, name, color, message) {
@@ -29,9 +30,16 @@ const App = ({ name, color }) => {
 				sendMessage(firestore, name, color, value)
 					.then(function() {
 						console.log('Document successfully written!');
+						ReactGA.event({
+							category: 'Message',
+							action: 'Post a message'
+						});
 					})
 					.catch(function(error) {
-						console.error('Error writing document: ', error);
+						ReactGA.event({
+							category: 'Error',
+							action: 'Post a message cause error'
+						});
 					});
 			}}
 		>
