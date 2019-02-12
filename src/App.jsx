@@ -2,6 +2,8 @@ import React from 'react';
 import FetchData from './FetchData';
 import PostData from './PostData';
 import styled, { createGlobalStyle } from 'styled-components';
+import randomColor from 'random-color';
+import randomName from 'random-name';
 
 const GS = createGlobalStyle`
 	html, body {
@@ -16,21 +18,13 @@ const Terminal = styled.div`
 `;
 
 const App = () => {
-	const [name, setName] = React.useState('');
-	const [color, setColor] = React.useState('');
-	React.useEffect(() => {
-		fetch('http://uinames.com/api/')
-			.then(res => res.json())
-			.then(res => setName(res.name));
-		fetch('http://www.colr.org/json/color/random')
-			.then(res => res.json())
-			.then(res => setColor(res['new_color']));
-	}, []);
+	const color = randomColor(0.99, 0.99);
+	const name = randomName.first();
 	return (
 		<Terminal>
 			<GS />
 			<FetchData />
-			<PostData name={name} color={color} />
+			<PostData name={name} color={color.hexString()} />
 		</Terminal>
 	);
 };

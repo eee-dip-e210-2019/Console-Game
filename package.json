@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.8.2",
+    "random-color": "^1.0.1",
+    "random-name": "^0.1.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.4",
