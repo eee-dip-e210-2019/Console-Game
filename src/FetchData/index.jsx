@@ -8,7 +8,6 @@ const App = () => {
 	const myRef = React.createRef();
 	React.useEffect(() => {
 		const node = myRef.current;
-		console.log(node);
 		const unsubsribe = firestore.collection('messages').onSnapshot(function(ss) {
 			setResult(ss.docs.map(doc => doc.data()));
 			node.scrollIntoView({ behavior: 'smooth' });
