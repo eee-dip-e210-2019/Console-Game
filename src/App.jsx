@@ -39,13 +39,14 @@ function initializeReactGA() {
 
 const App = () => {
 	initializeReactGA();
+	const [cipher, setCipher] = React.useState(true);
 	const color = randomColor(0.99, 0.99);
 	const name = randomName();
 	return (
 		<Terminal>
 			<GS />
-			<FetchData />
-			<PostData name={name} color={color.hexString()} />
+			<FetchData cipher={cipher} />
+			<PostData name={name} color={color.hexString()} setCipher={setCipher} />
 		</Terminal>
 	);
 };

@@ -17,7 +17,7 @@ function sendMessage(repo, name, color, message) {
 		});
 }
 
-const App = ({ name, color }) => {
+const App = ({ name, color, setCipher }) => {
 	let inputValue;
 	const firestore = FireApp.firestore;
 	const [value, setValue] = React.useState('');
@@ -29,7 +29,10 @@ const App = ({ name, color }) => {
 			onClick={() => inputValue.focus()}
 			onSubmit={e => {
 				e.preventDefault();
-				setValue('');
+				if (value === process.env.REACT_APP_PASSWORD) {
+					setCipher(false);
+					return;
+				}
 				sendMessage(firestore, name, color, value)
 					.then(function() {
 						ReactGA.event({
@@ -43,10 +46,11 @@ const App = ({ name, color }) => {
 							action: 'Post a message cause error'
 						});
 					});
+				setValue('');
 			}}
 		>
 			<Prompt>
-				~/trashbin/<Name color={color}>{name}</Name>&nbsp;
+				~/bin/<Name color={color}>{name}</Name>&nbsp;
 			</Prompt>
 			<CommandWrapper>
 				<Prompt>{` $ `}</Prompt>
