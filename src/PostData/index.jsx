@@ -31,6 +31,7 @@ const App = ({ name, color, setCipher }) => {
 				e.preventDefault();
 				if (value === process.env.REACT_APP_PASSWORD) {
 					setCipher(false);
+					setValue('');
 					return;
 				}
 				sendMessage(firestore, name, color, value)
