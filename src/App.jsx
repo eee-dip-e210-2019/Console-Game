@@ -6,6 +6,7 @@ import randomName from 'sillyname';
 
 import FetchData from './FetchData';
 import PostData from './PostData';
+import QRPage from './QRPage';
 
 const GS = createGlobalStyle`
 	* { box-sizing:border-box; }
@@ -13,7 +14,7 @@ const GS = createGlobalStyle`
 		margin:0;
 		color: lightgreen;
 		font-family: 'Courier New', Courier, monospace;
-		background: #363636;
+		background: #222;
 	}
 	html {
     overflow: hidden;
@@ -40,13 +41,15 @@ function initializeReactGA() {
 const App = () => {
 	initializeReactGA();
 	const [cipher, setCipher] = React.useState(true);
+	const [showQR, setShowQR] = React.useState(false);
 	const color = randomColor(0.99, 0.99);
 	const name = randomName();
 	return (
 		<Terminal>
 			<GS />
 			<FetchData cipher={cipher} />
-			<PostData name={name} color={color.hexString()} setCipher={setCipher} />
+			<PostData name={name} color={color.hexString()} setCipher={setCipher} setShowQR={setShowQR} />
+			<QRPage showQR={showQR} />
 		</Terminal>
 	);
 };

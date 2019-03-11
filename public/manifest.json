@@ -1,5 +1,5 @@
 {
-	"short_name": "bin",
+	"short_name": "Xperience",
 	"name": "A fun application for anonymous messaging",
 	"icons": [
 		{
@@ -13,13 +13,8 @@
 			"type": "image/png"
 		},
 		{
-			"src": "ico_256.png",
-			"sizes": "256x256",
-			"type": "image/png"
-		},
-		{
-			"src": "ico_128.png",
-			"sizes": "128x128",
+			"src": "ico_144.png",
+			"sizes": "144x144",
 			"type": "image/png"
 		}
 	],

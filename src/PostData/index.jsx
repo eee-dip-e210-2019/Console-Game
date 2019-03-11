@@ -13,11 +13,11 @@ function sendMessage(repo, name, color, message) {
 			name,
 			message,
 			color,
-			time
+			time,
 		});
 }
 
-const App = ({ name, color, setCipher }) => {
+const App = ({ name, color, setCipher, setShowQR }) => {
 	let inputValue;
 	const firestore = FireApp.firestore;
 	const [value, setValue] = React.useState('');
@@ -34,24 +34,29 @@ const App = ({ name, color, setCipher }) => {
 					setValue('');
 					return;
 				}
+				if (value === process.env.REACT_APP_CRIMINAL_NAME) {
+					setShowQR(true);
+					setValue('');
+					return;
+				}
 				sendMessage(firestore, name, color, value)
 					.then(function() {
 						ReactGA.event({
 							category: 'Message',
-							action: 'Post a message'
+							action: 'Post a message',
 						});
 					})
 					.catch(function(error) {
 						ReactGA.event({
 							category: 'Error',
-							action: 'Post a message cause error'
+							action: 'Post a message cause error',
 						});
 					});
 				setValue('');
 			}}
 		>
 			<Prompt>
-				~/bin/<Name color={color}>{name}</Name>&nbsp;
+				~/Xperience/<Name color={color}>WhoAmI</Name>&nbsp;
 			</Prompt>
 			<CommandWrapper>
 				<Prompt>{` $ `}</Prompt>
