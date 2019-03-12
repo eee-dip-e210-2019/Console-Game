@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 import FireApp from '../utils/firebase';
 import { Input, Prompt, Form, Name, CommandWrapper } from './style';
 
-function sendMessage(repo, name, color, message) {
+function sendMessage(repo, name = 'Professor X', color, message) {
 	const time = new Date().getTime();
 	return repo
 		.collection('messages')
@@ -39,7 +39,7 @@ const App = ({ name, color, setCipher, setShowQR }) => {
 					setValue('');
 					return;
 				}
-				sendMessage(firestore, name, color, value)
+				sendMessage(firestore, 'Professor X', color, value)
 					.then(function() {
 						ReactGA.event({
 							category: 'Message',
@@ -59,7 +59,7 @@ const App = ({ name, color, setCipher, setShowQR }) => {
 				~/Xperience/<Name color={color}>WhoAmI</Name>&nbsp;
 			</Prompt>
 			<CommandWrapper>
-				<Prompt>{` $ `}</Prompt>
+				<Prompt>{`$`}&nbsp;</Prompt>
 				<Input
 					spellcheck={false}
 					value={value}
