@@ -6,6 +6,7 @@ import { Input, Prompt, Form, Name, CommandWrapper } from './style';
 
 function sendMessage(repo, name = 'Professor X', color, message) {
 	const time = new Date().getTime();
+
 	return repo
 		.collection('messages')
 		.doc(time.toString())
@@ -24,9 +25,14 @@ const App = ({ name, color, setCipher, setShowQR }) => {
 	React.useEffect(() => {
 		inputValue.scrollIntoView();
 	}, []);
+	React.useEffect(() => {
+		const remove = window.addEventListener('click', () => {
+			inputValue.focus();
+		});
+		return remove;
+	}, []);
 	return (
 		<Form
-			onClick={() => inputValue.focus()}
 			onSubmit={e => {
 				e.preventDefault();
 				if (value === process.env.REACT_APP_PASSWORD) {

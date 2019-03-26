@@ -7,7 +7,7 @@
 		"random-color": "^1.0.1",
 		"react": "^16.8.1",
 		"react-dom": "^16.8.1",
-		"react-ga": "^2.5.7",
+		"react-router-dom": "5.0.0",
 		"react-scripts": "2.1.4",
 		"sillyname": "^0.1.0",
 		"styled-components": "^4.1.3"

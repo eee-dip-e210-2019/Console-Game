@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactGA from 'react-ga';
 import styled, { createGlobalStyle } from 'styled-components';
 import randomColor from 'random-color';
 import randomName from 'sillyname';
-
+import { BrowserRouter, Route } from 'react-router-dom';
 import FetchData from './FetchData';
 import PostData from './PostData';
 import QRPage from './QRPage';
+import Login from './Login';
+import LoadingPage from './LoadingPage';
 
 const GS = createGlobalStyle`
 	* { box-sizing:border-box; }
@@ -14,11 +15,12 @@ const GS = createGlobalStyle`
 		margin:0;
 		color: lightgreen;
 		font-family: 'Courier New', Courier, monospace;
-		background: #222;
+		background: #333;
+		font-size: 20px;
 	}
 	html {
     overflow: hidden;
-    height: 100%;
+    height: 100vh;
 	}
 	body {
 			height: 100%;
@@ -33,24 +35,32 @@ const Terminal = styled.div`
 	padding: 10px;
 `;
 
-function initializeReactGA() {
-	ReactGA.initialize('UA-124593102-3');
-	ReactGA.pageview('/homepage');
-}
-
 const App = () => {
-	initializeReactGA();
 	const [cipher, setCipher] = React.useState(true);
 	const [showQR, setShowQR] = React.useState(false);
 	const color = randomColor(0.99, 0.99);
 	const name = randomName();
 	return (
-		<Terminal>
+		<BrowserRouter>
 			<GS />
-			<FetchData cipher={cipher} />
-			<PostData name={name} color={color.hexString()} setCipher={setCipher} setShowQR={setShowQR} />
-			<QRPage showQR={showQR} />
-		</Terminal>
+			<Route path="/" exact component={Login} />
+			<Route path="/load" exact component={LoadingPage} />
+			<Route
+				path="/term/"
+				component={() => (
+					<Terminal>
+						<FetchData cipher={cipher} />
+						<PostData
+							name={name}
+							color={color.hexString()}
+							setCipher={setCipher}
+							setShowQR={setShowQR}
+						/>
+						<QRPage showQR={showQR} />
+					</Terminal>
+				)}
+			/>
+		</BrowserRouter>
 	);
 };
 export default App;

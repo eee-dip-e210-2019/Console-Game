@@ -1,0 +1,45 @@
+::selection {
+  background: #FF5E99;
+}
+#container {
+  padding: 0 1rem;
+  margin-top:1rem;
+}
+#container output {
+  clear: both;
+  width: 100%;
+}
+.input-line {
+  display: flex;
+	align-items: center;
+}
+.input-line > div:nth-child(2) {
+  flex: 1;
+}
+.prompt {
+  white-space: nowrap;
+  color: #96b38a;
+  margin-right: 7px;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+.cmdline {
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  width: 100%;
+  font: inherit;
+  border: none;
+  color: inherit;
+}
+.ls-files {
+  height: 45px;
+  column-width: 100px;
+}
+.warning {
+  color: #FF5E99;
+}
+.success {
+  color: #3ff;
+}
