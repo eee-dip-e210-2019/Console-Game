@@ -5,7 +5,7 @@ const Login = ({ history }) => {
 	const REFRESH_TIME = 6000;
 	let output_ = React.useRef();
 	const input_ = React.useRef();
-	const [count, setCount] = React.useState(0);
+	const [count, setCount] = React.useState(1);
 	const [password, setPassword] = React.useState(0);
 	const [counter, setCounter] = React.useState();
 	React.useEffect(() => {
@@ -103,10 +103,10 @@ const Login = ({ history }) => {
 												history.push('/load');
 												setTimeout(() => {}, 10000);
 											} else {
-												if (count < 2) {
+												if (count === 1) {
 													output('<p class="warning">Login failed, password incorrect!</p>');
 												} else if (count === 2) {
-													output('<p class="warning">You need some help.</p>');
+													output('<p class="warning">You may need some help.</p>');
 												} else if (count === 3) {
 													output(
 														`<div>/129 = /1+2+9 = /12 = /1+2 = /3 = 3<br/><br/>/${question} = ?</div>`,

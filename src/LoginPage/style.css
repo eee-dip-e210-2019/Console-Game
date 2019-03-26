@@ -1,6 +1,4 @@
-::selection {
-  background: #FF5E99;
-}
+
 #container {
   padding: 0 1rem;
   margin-top:1rem;
@@ -38,7 +36,7 @@
   column-width: 100px;
 }
 .warning {
-  color: #FF5E99;
+  color: rgb(223, 13, 90);
 }
 .success {
   color: #3ff;

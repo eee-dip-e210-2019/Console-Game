@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactGA from 'react-ga';
 
-import FireApp from '../utils/firebase';
+import FireApp from '../../utils/firebase';
 import { Input, Prompt, Form, Name, CommandWrapper } from './style';
 
 function sendMessage(repo, name = 'Professor X', color, message) {
@@ -31,6 +30,7 @@ const App = ({ name, color, setCipher, setShowQR }) => {
 		});
 		return remove;
 	}, []);
+
 	return (
 		<Form
 			onSubmit={e => {
@@ -46,18 +46,8 @@ const App = ({ name, color, setCipher, setShowQR }) => {
 					return;
 				}
 				sendMessage(firestore, 'Professor X', color, value)
-					.then(function() {
-						ReactGA.event({
-							category: 'Message',
-							action: 'Post a message',
-						});
-					})
-					.catch(function(error) {
-						ReactGA.event({
-							category: 'Error',
-							action: 'Post a message cause error',
-						});
-					});
+					.then(function() {})
+					.catch(function(error) {});
 				setValue('');
 			}}
 		>

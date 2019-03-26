@@ -1,7 +1,7 @@
 import React from 'react';
-import FireApp from '../utils/firebase';
+import FireApp from '../../utils/firebase';
 import { Wrapper, Message } from './style';
-import { mapToEmoji, constructEmojiMap } from '../utils/emojiMap';
+import { mapToEmoji, constructEmojiMap } from '../../utils/emojiMap';
 
 const App = ({ cipher }) => {
 	const firestore = FireApp.firestore;
