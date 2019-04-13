@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import LoadingPage from './LoadingPage';
 import TerminalPage from './TerminalPage';
+import DigitalLockPage from './DigitalLockPage';
 
 const GS = createGlobalStyle`
 	* { box-sizing:border-box; }
@@ -33,7 +34,8 @@ const App = () => {
 			<GS />
 			<Route path="/" exact component={LoginPage} />
 			<Route path="/load" exact component={LoadingPage} />
-			<Route path="/term/" component={TerminalPage} />
+			<Route path="/term" component={TerminalPage} />
+			<Route path="/lock" component={DigitalLockPage} />
 		</BrowserRouter>
 	);
 };
