@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactGA from 'react-ga';
-import styled, { createGlobalStyle } from 'styled-components';
-import randomColor from 'random-color';
-import randomName from 'sillyname';
-
-import FetchData from './FetchData';
-import PostData from './PostData';
+import { createGlobalStyle } from 'styled-components';
+import { BrowserRouter, Route } from 'react-router-dom';
+import LoginPage from './LoginPage';
+import LoadingPage from './LoadingPage';
+import TerminalPage from './TerminalPage';
+import DigitalLockPage from './DigitalLockPage';
 
 const GS = createGlobalStyle`
 	* { box-sizing:border-box; }
@@ -13,40 +12,31 @@ const GS = createGlobalStyle`
 		margin:0;
 		color: lightgreen;
 		font-family: 'Courier New', Courier, monospace;
-		background: #363636;
+		background: #222;
+		font-size: 20px;
 	}
 	html {
     overflow: hidden;
-    height: 100%;
+    height: 100vh;
 	}
 	body {
 			height: 100%;
 			overflow: auto;
 	}
+	::selection {
+		background: #FF5E99;
+	}
 `;
-const Terminal = styled.div`
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	max-height: 100vh;
-	padding: 10px;
-`;
-
-function initializeReactGA() {
-	ReactGA.initialize('UA-124593102-3');
-	ReactGA.pageview('/homepage');
-}
 
 const App = () => {
-	initializeReactGA();
-	const color = randomColor(0.99, 0.99);
-	const name = randomName();
 	return (
-		<Terminal>
+		<BrowserRouter>
 			<GS />
-			<FetchData />
-			<PostData name={name} color={color.hexString()} />
-		</Terminal>
+			<Route path="/" exact component={LoginPage} />
+			<Route path="/load" exact component={LoadingPage} />
+			<Route path="/term" component={TerminalPage} />
+			<Route path="/lock" component={DigitalLockPage} />
+		</BrowserRouter>
 	);
 };
 export default App;
